@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+<div style="display: flex; margin-top: 80px; flex-direction: column; align-items: center; text-align: center;">
+    
+    <img src="https://image.tmdb.org/t/p/w300{{ person.profile_path }}"
+         style="border-radius: 10px; margin-bottom: 10px;" />
+
+    <h2>{{ person.name }}</h2>
+    <h2>Date of Birth: {{ person.birthday }}</h2>
+
+    {% if person.deathday %}
+      <h2>Died on: {{ person.deathday }}</h2>
+    {% endif %}
+
+    <p style="max-width: 600px;">
+      {{ person.biography }}
+    </p>
+
+</div>
+
+{% endblock %}

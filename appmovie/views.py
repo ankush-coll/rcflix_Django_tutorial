@@ -85,3 +85,13 @@ def series_details(request, id):
         return render(request,'seriesdetails.html',{"trailers": trailers,"info":info_data,"credits":credits_data["cast"],"similar":similar_data["results"]})
     except Exception as error:
         return HttpResponse(str(error))
+    
+def person_info(request, id):
+    try:
+        person=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}?language=en-US")
+
+        person_data=json.loads(person)
+
+        return render(request,'person.html',{"person":person_data})
+    except Exception as error:
+            return HttpResponse(str(error))
