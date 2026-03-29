@@ -22,3 +22,16 @@ def movies_trending(request):
         return render(request,'home.html',{"randommovie":random_movie,"data":jdata["results"],"toprated":trdata["results"],"now_playing":npdata["results"],"upcoming":udata["results"]})
     except Exception as error:
         return HttpResponse(str(error))
+    
+def movie_details(request, id):
+    try:
+        movie_videos=fetchfromDB(f"https://api.themoviedb.org/3/movie/{id}/videos")
+        trailers = []
+        video_data=json.loads(movie_videos)
+        for v in video_data["results"]:
+            if v["site"]=="Youtube" and  v.get("official"):
+                trailers.append(v["key"])
+
+        return render(request,'moviedetails.html',{"trailers": trailers})
+    except Exception as error:
+        return HttpResponse(str(error))

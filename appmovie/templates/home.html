@@ -15,7 +15,7 @@
     </p>
 
     <div class="hero-buttons">
-      <button class="btn play">▶ Play</button>
+      <button class="btn play"><a href="{% url 'movie_details' randommovie.id %}">▶ Play</a></button>
       <button class="btn info">ℹ More Info</button>
     </div>
   </div>
@@ -32,7 +32,7 @@
         {% for item in now_playing %}
         <div class="movie-card">
             {% if item.backdrop_path %}
-                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+                <a href="{% url 'movie_details' item.id %}"><img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}"></a>
             {% else %}
                 <img src="/static/default.jpg">
             {% endif %}
@@ -56,7 +56,7 @@
         {% for item in data %}
         <div class="movie-card">
             {% if item.backdrop_path %}
-                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+                <a href="{% url 'movie_details' item.id %}"><img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}"></a>
             {% else %}
                 <img src="/static/default.jpg">
             {% endif %}
@@ -79,7 +79,7 @@
         {% for item in toprated %}
         <div class="movie-card">
             {% if item.backdrop_path %}
-                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+                <a href="{% url 'movie_details' item.id %}"><img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}"></a>
             {% else %}
                 <img src="/static/default.jpg">
             {% endif %}
@@ -102,7 +102,7 @@
         {% for item in upcoming %}
         <div class="movie-card">
             {% if item.backdrop_path %}
-                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+                <a href="{% url 'movie_details' item.id %}"><img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}"></a>
             {% else %}
                 <img src="/static/default.jpg">
             {% endif %}
