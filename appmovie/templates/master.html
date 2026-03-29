@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCFlix Movies and shows</title>
+<link rel="icon" type="image/x-icon" href="{% static 'appmovie/favicon.png' %}">
+<link rel="stylesheet" href="{% static 'appmovie/master.css' %}">
+</head>
+
+<body>
+<header class="navbar">
+      <div class="page-links">
+        <img src="{% static 'appmovie/favicon.png' %}" alt="This is the Netflix logo" class="logo">
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Series</a>
+          <a href="#">Films</a>
+          <a href="#">New & Popular</a>
+          <a href="#">My List</a>
+          <a href="#">Browse by languages</a>
+        </nav>
+      </div>
+      <aside class="operational-btns">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <h3 class="audience-btn"></h3>
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </aside>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+  
+</body>
+
+<script type="module">
+    import ScrollBar from "../static/appmovie/scroll.js";
+    ScrollBar();
+</script>
+</html>

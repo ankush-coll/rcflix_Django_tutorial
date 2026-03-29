@@ -1,0 +1,119 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="hero" style="background: url('https://image.tmdb.org/t/p/original/{{randommovie.backdrop_path}}') center/cover no-repeat;
+  display: flex;">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">{{randommovie.title}}</h1>
+
+    <p class="hero-desc">
+      {{randommovie.overview}}
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn play">▶ Play</button>
+      <button class="btn info">ℹ More Info</button>
+    </div>
+  </div>
+
+</div>
+
+<h2>Trending Movies</h2>
+
+<div class="row-container">
+    
+    <button class="scroll-btn left">❮</button>
+
+    <div class="movie-row" id="movieRow">
+        {% for item in now_playing %}
+        <div class="movie-card">
+            {% if item.backdrop_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+            {% else %}
+                <img src="/static/default.jpg">
+            {% endif %}
+            <h3>{{item.title}}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="scroll-btn right">❯</button>
+
+</div>
+
+
+<h2>Popular Movies</h2>
+
+<div class="row-container">
+    
+    <button class="scroll-btn left">❮</button>
+
+    <div class="movie-row" id="movieRow">
+        {% for item in data %}
+        <div class="movie-card">
+            {% if item.backdrop_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+            {% else %}
+                <img src="/static/default.jpg">
+            {% endif %}
+            <h3>{{item.title}}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="scroll-btn right">❯</button>
+
+</div>
+
+<h2>Top Rated Movies of all Time</h2>
+
+<div class="row-container">
+    
+    <button class="scroll-btn left">❮</button>
+
+    <div class="movie-row" id="movieRow">
+        {% for item in toprated %}
+        <div class="movie-card">
+            {% if item.backdrop_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+            {% else %}
+                <img src="/static/default.jpg">
+            {% endif %}
+            <h3>{{item.title}}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="scroll-btn right">❯</button>
+
+</div>
+
+<h2>Upcoming Movies</h2>
+
+<div class="row-container">
+    
+    <button class="scroll-btn left">❮</button>
+
+    <div class="movie-row" id="movieRow">
+        {% for item in upcoming %}
+        <div class="movie-card">
+            {% if item.backdrop_path %}
+                <img src="https://image.tmdb.org/t/p/w300{{ item.backdrop_path }}">
+            {% else %}
+                <img src="/static/default.jpg">
+            {% endif %}
+            <h3>{{item.title}}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="scroll-btn right">❯</button>
+
+</div>
+{% endblock %}
+
+
