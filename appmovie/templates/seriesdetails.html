@@ -20,13 +20,12 @@
 </div>
 <div style="display: flex; justify-items: center; align-items: center;">
 <div class="movie-details" style="margin-left: 30px;">
-  <h1>{{ info.title }}</h1>
+  <h1>{{ info.original_name }}</h1>
   <p>{{ info.overview }}</p>
     <p><strong>Runtime: </strong>{{ info.runtime }} mins </p>
-  <p><strong>Release Date:</strong> {{ info.release_date }}</p>
   <p><strong>Rating:</strong> {{ info.vote_average|floatformat:1 }}</p>
 </div>
-<div style="margin-right: 30px; margin-top: 10px;">
+<div class="image-poster" style="margin-right: 30px; margin-top: 10px;">
   <img src="https://image.tmdb.org/t/p/w300{{info.poster_path}}">
 </div>
 </div>
@@ -40,7 +39,7 @@
           style="position: absolute; left: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10094;</button>
 
   <div id="castContainer" style="display: flex; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
-    {% for items in cast %}
+    {% for items in credits %}
       {% if items.profile_path %}
       <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
         <img src="https://image.tmdb.org/t/p/w500{{ items.profile_path }}" 
@@ -58,7 +57,7 @@
 
 </div>
 
-<h2 style="color: red;">Similar Movies you can watch</h2>
+<h2 style="color: red;">Similar TV shows you can watch</h2>
 <div style="position: relative; margin-top: 30px; margin-bottom: 50px; width: 100%; display: flex; align-items: center; margin-top: 30px;">
 
   <!-- Left button -->
@@ -90,7 +89,6 @@ function scrollCast(direction) {
   container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 </script>
-
 
 {% endblock %}
 
