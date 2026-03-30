@@ -89,9 +89,25 @@ def series_details(request, id):
 def person_info(request, id):
     try:
         person=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}?language=en-US")
+        person_movie_credits=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}/movie_credits?language=en-US")
 
         person_data=json.loads(person)
+        movie_data=json.loads(person_movie_credits)
 
-        return render(request,'person.html',{"person":person_data})
+        return render(request,'person.html',{"person":person_data,"movies":movie_data["cast"]})
+    except Exception as error:
+            return HttpResponse(str(error))
+
+def search_multi(request):
+    try:
+        query = request.GET.get('q')
+        multidata=fetchfromDB(f"https://api.themoviedb.org/3/search/multi?query={query}&include_adult=true&language=en-US&page=1")
+        multi_jdata=json.loads(multidata)
+
+        if not query:
+            return render(request, 'search.html', {'data': []})
+        else:
+            return render(request,'search.html',{"multi":multi_jdata["results"]})
+
     except Exception as error:
             return HttpResponse(str(error))

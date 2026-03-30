@@ -1,6 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
-
+{% block page_css %}
+        <link rel="stylesheet" href="{% static 'appmovie/moviedetails.css' %}">
+    {% endblock %}
 {% block content %}
 <div style="display: flex; margin-top: 80px; flex-direction: column; align-items: center; text-align: center;">
     
@@ -17,7 +19,62 @@
     <p style="max-width: 600px;">
       {{ person.biography }}
     </p>
+    <h2>Movies worked on</h2>
+    <div style="position: relative; width: 100%; overflow: hidden;">
 
+  <!-- LEFT ARROW -->
+  <button onclick="scrollLeftFn()" 
+          class="scroll-btn left">❮</button>
+
+  <!-- RIGHT ARROW -->
+  <button onclick="scrollRightFn()" 
+          class="scroll-btn right">❯</button>
+
+  <!-- CONTAINER -->
+  <div id="movieWrapper" 
+       style="display:flex; gap:16px; transition: transform 0.4s ease; margin-top: 30px; margin-bottom: 80px;">
+
+    {% for items in movies %}
+      {% if items.poster_path %}
+      <div style="min-width:165px; text-align:center;">
+        <a href="{% url 'movie_details' items.id %}">
+          <img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}"
+               style="width:165px; border-radius:8px;">
+        </a>
+        <h2 style="font-size:14px; color:#fff;">
+          {{ items.title|truncatechars:10 }}
+        </h2>
+      </div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</div>
 </div>
 
+<script>
+let position = 0;
+const cardWidth = 181; // 165 + gap
+const visibleCards = Math.floor(window.innerWidth / cardWidth);
+
+function scrollRightFn() {
+    const container = document.getElementById("movieWrapper");
+    const totalCards = container.children.length-1;
+
+    if (position > -(totalCards - visibleCards) * cardWidth) {
+        position -= cardWidth * 2; // move 2 cards
+        container.style.transform = `translateX(${position}px)`;
+    }
+}
+
+function scrollLeftFn() {
+    const container = document.getElementById("movieWrapper");
+
+    if (position < 0) {
+        position += cardWidth * 2;
+        container.style.transform = `translateX(${position}px)`;
+    }
+}
+
+</script>
 {% endblock %}

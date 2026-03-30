@@ -18,10 +18,11 @@
         <nav>
           <a href="{% url 'home' %}">Home</a>
           <a href="{% url 'series' %}">Series</a>
-          <a href="#">Films</a>
+          <a href="{% url 'home' %}">Films</a>
           <a href="#">New & Popular</a>
           <a href="#">My List</a>
           <a href="#">Browse by languages</a>
+          <a href="{% url 'search_multi' %}">Search</a>
         </nav>
       </div>
       <aside class="operational-btns">

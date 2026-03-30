@@ -59,27 +59,27 @@
 </div>
 
 <h2 style="color: red;">Similar Movies you can watch</h2>
+
 <div style="position: relative; margin-top: 30px; margin-bottom: 50px; width: 100%; display: flex; align-items: center; margin-top: 30px;">
 
   <!-- Left button -->
-  <button onclick="scrollCast(-1)" 
-          style="position: absolute; left: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10094;</button>
+   <button onclick="scrollLeftFn()" 
+          class="scroll-btn left">❮</button>
 
-  <div id="castContainer" style="display: flex; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
+  <button onclick="scrollRightFn()" 
+          class="scroll-btn right">❯</button>
+
+  <div id="movieWrapper" style="display: flex; transition: transform 0.4s ease; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
     {% for items in similar %}
       {% if items.poster_path %}
       <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}" 
-             style="width:165px; height:auto; border-radius:8px;">
+        <a href="{% url 'movie_details' items.id %}"><img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}" 
+             style="width:165px; height:auto; border-radius:8px;"></a>
         <h3 style="margin-top: 8px; font-size: 14px; color: #fff;">{{ items.title|truncatechars:10 }}</h3>
       </div>
       {% endif %}
     {% endfor %}
   </div>
-
-  <!-- Right button -->
-  <button onclick="scrollCast(1)" 
-          style="position: absolute; right: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10095;</button>
 
 </div>
 
@@ -89,6 +89,31 @@ function scrollCast(direction) {
   const scrollAmount = 300; // amount to scroll per click
   container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
+
+let position = 0;
+const cardWidth = 181; // 165 + gap
+const visibleCards = Math.floor(window.innerWidth / cardWidth);
+
+function scrollRightFn() {
+    const container = document.getElementById("movieWrapper");
+    const totalCards = container.children.length;
+
+    if (position > -(totalCards - visibleCards) * cardWidth) {
+        position -= cardWidth * 2; // move 2 cards
+        container.style.transform = `translateX(${position}px)`;
+    }
+}
+
+function scrollLeftFn() {
+    const container = document.getElementById("movieWrapper");
+
+    if (position < 0) {
+        position += cardWidth * 2;
+        container.style.transform = `translateX(${position}px)`;
+    }
+}
+
+</script>
 </script>
 
 
