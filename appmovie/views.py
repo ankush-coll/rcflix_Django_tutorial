@@ -98,7 +98,7 @@ def person_info(request, id):
         image_data=json.loads(person_images)
         person_cast=json.loads(person_tv)
 
-        return render(request,'person.html',{"person":person_data,"movies":movie_data["cast"],"images":image_data["profiles"],"tv":person_cast["cast"]})
+        return render(request,'person.html',{"person":person_data,"movies":movie_data["cast"],"images":image_data["profiles"][:5],"tv":person_cast["cast"]})
     except Exception as error:
             return HttpResponse(str(error))
 

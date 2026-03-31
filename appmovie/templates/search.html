@@ -15,25 +15,27 @@
   <div class="cards-container">
     
   {% for item in multi %}
-  {% if item.poster_path or item.profile_path %}
-    <div class="card">
-      
-     {% if item.media_type == "person" and item.profile_path %}
-  <a href="{% url 'person_info' item.id %}">
-    <img src="https://image.tmdb.org/t/p/w300{{ item.profile_path }}" alt="">
-  </a>
+    {% if item.poster_path or item.profile_path %}
+      <div class="card">
+        
+      {% if item.media_type == "person" and item.profile_path %}
+    <a href="{% url 'person_info' item.id %}">
+      <img src="https://image.tmdb.org/t/p/w300{{ item.profile_path }}" alt="">
+    </a>
 
-{% elif item.media_type == "tv" and item.poster_path %}
-  <a href="{% url 'series_details' item.id %}">
-    <img src="https://image.tmdb.org/t/p/w300{{ item.poster_path }}" alt="">
-  </a>
+    {% elif item.media_type == "tv" and item.poster_path %}
+    <a href="{% url 'series_details' item.id %}">
+      <img src="https://image.tmdb.org/t/p/w300{{ item.poster_path }}" alt="">
+    </a>
 
-{% elif item.media_type == "movie" and item.poster_path %}
-  <a href="{% url 'movie_details' item.id %}">
-    <img src="https://image.tmdb.org/t/p/w300{{ item.poster_path }}" alt="">
-  </a>
+    {% elif item.media_type == "movie" and item.poster_path %}
+    <a href="{% url 'movie_details' item.id %}">
+      <img src="https://image.tmdb.org/t/p/w300{{ item.poster_path }}" alt="">
+    </a>
 
-{% endif %}
+    {% else %}
+    <h2 style="color: white;">Sorry !! Nothing found</h2>
+  {% endif %}
 <h3>
         {% if item.title and item.title != "None" %}
   {{ item.title }}
@@ -49,7 +51,7 @@
 <style>
     .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   padding: 20px 40px;
 }
