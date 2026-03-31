@@ -90,11 +90,15 @@ def person_info(request, id):
     try:
         person=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}?language=en-US")
         person_movie_credits=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}/movie_credits?language=en-US")
+        person_images=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}/images")
+        person_tv=fetchfromDB(f"https://api.themoviedb.org/3/person/{id}/tv_credits")
 
         person_data=json.loads(person)
         movie_data=json.loads(person_movie_credits)
+        image_data=json.loads(person_images)
+        person_cast=json.loads(person_tv)
 
-        return render(request,'person.html',{"person":person_data,"movies":movie_data["cast"]})
+        return render(request,'person.html',{"person":person_data,"movies":movie_data["cast"],"images":image_data["profiles"],"tv":person_cast["cast"]})
     except Exception as error:
             return HttpResponse(str(error))
 
