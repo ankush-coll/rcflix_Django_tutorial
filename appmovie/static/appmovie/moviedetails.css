@@ -1,6 +1,6 @@
 .hero-video {
   position: relative;
-  height: 60vh;          /* Let iframe control the height */
+  margin-top: 88px;
   text-align: center;    /* Center the iframe horizontally */
   padding: 20px 0;       /* Optional spacing */
 }

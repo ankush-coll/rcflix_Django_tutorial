@@ -38,7 +38,7 @@ def movie_details(request, id):
         similar_data=json.loads(similar_movies)
 
         for v in video_data["results"]:
-            if v["site"]=="Youtube" and  v.get("official"):
+            if v["site"]=="Youtube" and  v.get("official") and v["type"]=="Trailer":
                 trailers.append(v["key"])
 
         return render(request,'moviedetails.html',{"trailers": trailers,"info":info_data,"cast":credit_data["cast"],"similar":similar_data["results"]})
@@ -115,3 +115,6 @@ def search_multi(request):
 
     except Exception as error:
             return HttpResponse(str(error))
+
+def frontpage(request):
+    return render(request,'frontpage.html')

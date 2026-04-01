@@ -14,7 +14,7 @@
 <body>
 <header class="navbar">
       <div class="page-links">
-        <img src="{% static 'appmovie/favicon.png' %}" alt="This is the Netflix logo" class="logo">
+        <h1 class="logo">RCFlix</h1>
         <nav>
           <a href="{% url 'home' %}">Home</a>
           <a href="{% url 'series' %}">Series</a>
@@ -42,4 +42,14 @@
     import ScrollBar from "../static/appmovie/scroll.js";
     ScrollBar();
 </script>
+
+<style>
+  .logo {
+  color: red;
+  font-size: 32px;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-left: 20px;
+}
+</style>
 </html>

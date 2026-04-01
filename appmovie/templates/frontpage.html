@@ -1,0 +1,328 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  height: 100vh;
+  background: url('static/appmovie/netflix.jpg') no-repeat center center/cover;
+  position: relative;
+  color: white;
+  background: 
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.8) 0%,
+      rgba(0,0,0,0.4) 50%,
+      rgba(0,0,0,0.8) 100%
+    ),
+}
+
+/* DARK OVERLAY */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+/* NAVBAR */
+.navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+}
+
+.logo {
+  color: red;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.nav-right {
+  display: flex;
+  gap: 15px;
+  border-radius: 7px;
+}
+
+.signin-btn {
+  background: red;
+  color: white;
+ border-radius: 7px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+/* CENTER CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.hero-content h3 {
+  margin-top: 15px;
+  font-weight: 400;
+}
+
+.hero-content p {
+  margin: 20px 0;
+}
+
+/* EMAIL BOX */
+.email-box {
+  display: flex;
+  gap: 10px;
+}
+
+.email-box input {
+  padding: 15px;
+  width: 300px;
+  outline: none;
+  border-radius: 7px;
+  background-color: transparent;
+  color: white;
+}
+
+.email-box input::placeholder{
+    color: white;
+}
+
+.email-box button {
+  background: red;
+  color: white;
+  border-radius: 7px;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.features {
+  background: black;
+  color: white;
+  padding: 50px;
+}
+
+.features h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* CARD DESIGN */
+.card {
+  padding: 25px;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    145deg,
+    #1a1a2e,
+    #2b0a1e
+  );
+
+  min-height: 200px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.faq {
+  background: black;
+  color: white;
+  padding: 50px;
+}
+
+.faq h2 {
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+/* QUESTION */
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  font-size: 18px;
+
+  background: #2d2d2d;
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ANSWER */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background: #2d2d2d;
+  transition: max-height 0.3s ease;
+  padding: 0 20px;
+}
+
+.faq-answer p {
+  padding: 15px 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="hero">
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1 class="logo">RCFlix</h1>
+
+    <div class="nav-right">
+      <select style="background-color: transparent; color: white;">
+        <option >English</option>
+      </select>
+      <a href="{% url 'home' %}"><button class="signin-btn">Sign In</button></a>
+    </div>
+  </div>
+
+  <!-- Center Content -->
+  <div class="hero-content">
+    <h1>Unlimited movies, shows, and more</h1>
+    <h3>Starts at ₹149. Cancel at any time.</h3>
+    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+
+    <div class="email-box">
+      <input type="email" placeholder="Email address">
+      <a href="{% url 'home' %}"><button>Get Started ></button></a>
+    </div>
+  </div>
+
+</div>
+
+<section class="features">
+  <h2>More reasons to join</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Enjoy on your TV</h3>
+      <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+    </div>
+
+    <div class="card">
+      <h3>Download your shows to watch offline</h3>
+      <p>Save your favourites easily and always have something to watch.</p>
+    </div>
+
+    <div class="card">
+      <h3>Watch everywhere</h3>
+      <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+    </div>
+
+    <div class="card">
+      <h3>Create profiles for kids</h3>
+      <p>Send kids on adventures with their favourite characters.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">What is RCflix? <span>+</span></button>
+    <div class="faq-answer">
+      <p>RCflix is a streaming service...</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Where can I watch? <span>+</span></button>
+    <div class="faq-answer">
+      <p>Watch anywhere, anytime. Sign in with your RCflix account to watch instantly on the web at rcflix.com from your personal computer or on any internet-connected device that offers the RCflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.
+
+You can also download your favourite shows with the iOS or Android app. Use downloads to watch while you're on the go and without an internet connection. Take RCflix with you anywhere.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">How do I cancel? <span>+</span></button>
+    <div class="faq-answer">
+      <p>RCflix is flexible. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.
+      </p>
+    </div>
+  </div>
+
+   <div class="faq-item">
+    <button class="faq-question">How much does RCflix cost? <span>+</span></button>
+    <div class="faq-answer">
+      <p>Plans start at ₹149...</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Is RCFlix good for Kids ? <span>+</span></button>
+    <div class="faq-answer">
+      <p>
+        The RCflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and films in their own space.
+
+Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see.
+      </p>
+    </div>
+  </div>
+</section>
+</body>
+<script>
+    document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const answer = btn.nextElementSibling;
+
+    if (answer.style.maxHeight) {
+      answer.style.maxHeight = null;
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});
+</script>
+</html>
+

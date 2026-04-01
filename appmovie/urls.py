@@ -1,7 +1,8 @@
 from django.urls import path
-from appmovie.views import movies_trending,search_multi, person_info, movie_details, series,series_details
+from appmovie.views import frontpage, movies_trending,search_multi, person_info, movie_details, series,series_details
 urlpatterns=[
-    path('',movies_trending,name='home'),
+    path('',frontpage,name='frontpage'),
+    path('home/',movies_trending,name='home'),
     path('movie/<int:id>/',movie_details,name='movie_details'),
     path('series/',series,name='series'),
     path('tv/<int:id>/',series_details,name='series_details'),

@@ -61,25 +61,22 @@
 <div style="position: relative; margin-top: 30px; margin-bottom: 50px; width: 100%; display: flex; align-items: center; margin-top: 30px;">
 
   <!-- Left button -->
-  <button onclick="scrollCast(-1)" 
-          style="position: absolute; left: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10094;</button>
+  <button class="scroll-btn left">❮</button>
 
-  <div id="castContainer" style="display: flex; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
+  <div id="movie-row" style="display: flex; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
     {% for items in similar %}
       {% if items.poster_path %}
       <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}" 
-             style="width:165px; height:auto; border-radius:8px;">
-        <h3 style="margin-top: 8px; font-size: 14px; color: #fff;">{{ items.title|truncatechars:10 }}</h3>
+        <a href="{% url 'series_details' items.id %}"><img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}" 
+             style="width:165px; height:auto; border-radius:8px;"></a>
+        <h3 style="margin-top: 8px; font-size: 14px; color: #fff;">{{ items.name|truncatechars:10 }}</h3>
       </div>
       {% endif %}
     {% endfor %}
   </div>
 
   <!-- Right button -->
-  <button onclick="scrollCast(1)" 
-          style="position: absolute; right: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10095;</button>
-
+  <button class="scroll-btn right">❯</button>
 </div>
 
 <script>
