@@ -87,6 +87,7 @@ h2{
 /* Container */
 .row-container {
     position: relative;
+    
 }
 
 /* Movie row */
@@ -95,6 +96,7 @@ h2{
     overflow-x: auto;
     gap: 15px;
     scroll-behavior: smooth;
+    margin-bottom: 20px;
 }
 
 .movie-row::-webkit-scrollbar {

@@ -1,8 +1,22 @@
 .hero-video {
   position: relative;
-  height: 60vh;          /* Let iframe control the height */
+  margin-top: 88px;
   text-align: center;    /* Center the iframe horizontally */
   padding: 20px 0;       /* Optional spacing */
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar (Chrome, Safari) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
 }
 
 .hero-video iframe {
