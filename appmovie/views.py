@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 import requests
 from appmovie.services.tmdbservices import fetchfromDB
+from datetime import datetime
 import json
 import random
 # Create your views here.
@@ -17,6 +18,10 @@ def movies_trending(request):
         udata=json.loads(upcoming_data)
 
         random_movie=random.choice(jdata["results"])
+        release_date = random_movie.get("release_date")
+
+        if release_date:
+            random_movie["release_date"] = datetime.strptime(release_date, "%Y-%m-%d")
 
 
         return render(request,'home.html',{"randommovie":random_movie,"data":jdata["results"],"toprated":trdata["results"],"now_playing":npdata["results"],"upcoming":udata["results"]})
@@ -80,7 +85,7 @@ def series_details(request, id):
 
         for v in video_data["results"]:
             if v["site"]=="Youtube" and  v.get("official"):
-                trailers.append(v["key"])
+                trailers.append(v["id"])
 
         return render(request,'seriesdetails.html',{"trailers": trailers,"info":info_data,"credits":credits_data["cast"],"similar":similar_data["results"]})
     except Exception as error:

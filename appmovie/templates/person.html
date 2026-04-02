@@ -67,10 +67,10 @@
     
     <button class="scroll-btn left">❮</button>
 
+    {% for items in tv %}
     <div class="movie-row" id="movieRow">
-      {% for items in tv %}
-      <div class="movie-card">
       {% if items.poster_path %}
+      <div class="movie-card">
       <div style="min-width:165px; text-align:center;">
         <a href="{% url 'movie_details' items.id %}">
           <img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}"

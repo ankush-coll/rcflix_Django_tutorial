@@ -24,6 +24,11 @@
   <p>{{ info.overview }}</p>
     <p><strong>Runtime: </strong>{{ info.runtime }} mins </p>
   <p><strong>Rating:</strong> {{ info.vote_average|floatformat:1 }}</p>
+  {% if info.adult %}
+            <span style="color: red; font-weight: bold;">18+</span>
+        {% else %}
+        <span style="color: rgb(23, 188, 23); font-weight: bold;">UA</span>
+        {% endif %}
 </div>
 <div class="image-poster" style="margin-right: 30px; margin-top: 10px;">
   <img src="https://image.tmdb.org/t/p/w300{{info.poster_path}}">
@@ -36,7 +41,7 @@
 
   <!-- Left button -->
   <button onclick="scrollCast(-1)" 
-          style="position: absolute; left: 0; z-index: 10; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10094;</button>
+          style="position: absolute; left: 0; z-index: 40; height: 50%; background: rgba(223, 10, 10, 0.5); color: white; border: none; cursor: pointer; padding: 0 10px;">&#10094;</button>
 
   <div id="castContainer" style="display: flex; overflow: hidden; gap: 16px; width: 100%; scroll-behavior: smooth;">
     {% for items in credits %}

@@ -11,13 +11,23 @@
     <h1 class="hero-title">{{randommovie.title}}</h1>
 
     <p class="hero-desc">
-      {{randommovie.overview}}
+      {{randommovie.overview|truncatechars:100}}
     </p>
     <p class="hero-desc">
-     Released on {{randommovie.release_date}}
+     <span style="color: red; font-weight: bold;">Released on </span>
+     {{ randommovie.release_date|date:"jS M, Y" }}
     </p>
     <p class="hero-desc">
-     Rating {{randommovie.vote_average|floatformat:1}}
+     <span style="color: red; font-weight: bold;">Rating </span>
+     {{randommovie.vote_average|floatformat:1}}
+    </p>
+
+    <p class="hero-desc">
+        {% if randommovie.adult %}
+            <span style="color: red; font-weight: bold;">18+</span>
+        {% else %}
+        <span style="color: rgb(23, 188, 23); font-weight: bold;">UA</span>
+        {% endif %}
     </p>
 
     <div class="hero-buttons">

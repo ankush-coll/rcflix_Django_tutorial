@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="page" style="margin-top: 50px;">
+<div class="page" style="margin-top: 100px;">
 
   <!-- SEARCH -->
-  <<div class="search-section">
+  <div class="search-section">
     <form method="GET" action="{% url 'search_multi' %}" class="search-box">
       <input type="text" name="q" placeholder="Search movies, TV, people..." required>
       <button type="submit">Search</button>
@@ -20,7 +20,7 @@
         
       {% if item.media_type == "person" and item.profile_path %}
     <a href="{% url 'person_info' item.id %}">
-      <img src="https://image.tmdb.org/t/p/w300{{ item.profile_path }}" alt="">
+      <img src="https://image.tmdb.org/t/p/w500{{ item.profile_path }}" alt="">
     </a>
 
     {% elif item.media_type == "tv" and item.poster_path %}

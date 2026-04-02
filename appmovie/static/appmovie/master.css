@@ -94,9 +94,9 @@ h2{
 .movie-row {
     display: flex;
     overflow-x: auto;
-    gap: 15px;
+    gap: 14px;
     scroll-behavior: smooth;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .movie-row::-webkit-scrollbar {
