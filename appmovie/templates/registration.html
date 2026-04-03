@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RCFlix - Sign Up</title>
+    <link rel="stylesheet" href="{% static 'appmovie/login.css' %}"/>
+    <link rel="icon" type="image/png" href="{% static 'appmovie/favicon.png' %}">
+</head>
+
+<body>
+<div class="background-overlay"></div>
+
+<div class="login-wrapper">
+    <div class="login-box">
+
+        <h1 class="logo">RCFlix</h1>
+        <h2>Create Account</h2>
+
+        {% if form.errors %}
+        <div class="error-box">
+            Please check the errors below.
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="input-group">
+                {{ form.username }}
+                <div class="error">{{ form.username.errors }}</div>
+            </div>
+
+            <div class="input-group">
+                {{ form.email }}
+                <div class="error">{{ form.email.errors }}</div>
+            </div>
+
+            <div class="input-group">
+                {{ form.password1 }}
+                <div class="error">{{ form.password1.errors }}</div>
+            </div>
+
+            <div class="input-group">
+                {{ form.password2 }}
+                <div class="error">{{ form.password2.errors }}</div>
+            </div>
+
+            <button type="submit" class="login-btn">Sign Up</button>
+        </form>
+
+        <p class="register-text">
+            Already have an account?
+            <a href="/accounts/login/">Sign in now</a>
+        </p>
+
+    </div>
+</div>
+</body>
+</html>

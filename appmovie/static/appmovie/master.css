@@ -90,6 +90,24 @@ h2{
     
 }
 
+.navb {
+    margin-left: auto;
+}
+
+.navb a {
+    margin-right: 2px;
+}
+
+.search-icon{
+  color: white;
+   font-size: 30px; 
+}
+
+.search-link {
+    margin-left: auto;
+    color: white;
+}
+
 /* Movie row */
 .movie-row {
     display: flex;
@@ -180,5 +198,5 @@ h3,h1{
 nav >a {
     color: white;
     text-decoration: none;
-    margin-right: 20px;
+    margin-right: 15px;
 }

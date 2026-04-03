@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RCFlix - Verify</title>
+    <link rel="stylesheet" href="{% static 'appmovie/login.css' %}"/>
+    <link rel="icon" type="image/png" href="{% static 'appmovie/favicon.png' %}">
+</head>
+
+<body>
+<div class="background-overlay"></div>
+
+<div class="login-wrapper">
+    <div class="login-box">
+
+        <h1 class="logo">RCFlix</h1>
+        <h2>Verify Your Account</h2>
+
+        {% if error %}
+        <div class="error-box">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="otp" placeholder="Enter OTP" required>
+            </div>
+
+            <button type="submit" class="login-btn">Verify</button>
+        </form>
+
+        <p class="register-text">
+            Didn’t receive OTP?
+            <a href="#">Resend</a>
+        </p>
+
+    </div>
+</div>
+</body>
+</html>

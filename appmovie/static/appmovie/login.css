@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("../appmovie/hero.png") no-repeat center center/cover;
+    height: 100vh;
+}
+
+/* Dark overlay like Netflix */
+.background-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+}
+
+/* Center everything */
+.login-wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login card */
+.login-box {
+    background: rgba(0,0,0,0.75);
+    padding: 60px;
+    width: 350px;
+    border-radius: 8px;
+    color: white;
+}
+
+/* Logo */
+.logo {
+    color: red;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 4px;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 16px;
+}
+
+/* Button */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: red;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: darkred;
+}
+
+/* Error */
+.error-box {
+    background: #e87c03;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Register text */
+.register-text {
+    margin-top: 20px;
+    color: #aaa;
+}
+
+.register-text a {
+    color: white;
+    text-decoration: none;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}

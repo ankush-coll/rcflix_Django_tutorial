@@ -22,15 +22,11 @@
           <a href="#">New & Popular</a>
           <a href="#">My List</a>
           <!-- <a href="#">Browse by languages</a> -->
-          <a href="{% url 'search_multi' %}">Search</a>
+        </nav>
+        <nav class="navb">
+          <a href="{% url 'search_multi' %}" class="search-link"><span class="search-icon">🔍</span></a>
         </nav>
       </div>
-      <aside class="operational-btns">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <h3 class="audience-btn"></h3>
-        <i class="fa fa-bell" aria-hidden="true"></i>
-        <i class="fa fa-user" aria-hidden="true"></i>
-      </aside>
     </header>
 
     {% block content %}
