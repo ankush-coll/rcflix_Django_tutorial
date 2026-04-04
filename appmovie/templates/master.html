@@ -20,11 +20,18 @@
           <a href="{% url 'series' %}">Series</a>
           <a href="{% url 'home' %}">Films</a>
           <a href="#">New & Popular</a>
-          <a href="#">My List</a>
+          <a href="{% url 'list' %}">My List</a>
           <!-- <a href="#">Browse by languages</a> -->
         </nav>
         <nav class="navb">
           <a href="{% url 'search_multi' %}" class="search-link"><span class="search-icon">🔍</span></a>
+          {% if user.is_authenticated %}
+          <img style="width: 40px; height: 40px; border-radius: 20%; margin-right: 20px;" src="{% static user.profile.avatar %}" alt="User Avatar" class="avatar">
+            <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="logout_button" type="submit">Logout</button>
+    </form>
+          {% endif %}
         </nav>
       </div>
     </header>

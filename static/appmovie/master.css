@@ -92,15 +92,32 @@ h2{
 
 .navb {
     margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
 }
 
 .navb a {
-    margin-right: 2px;
+    margin-right: 10px;
+   
 }
 
 .search-icon{
   color: white;
    font-size: 30px; 
+}
+
+.logout_button{
+  background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: red;
+    font-weight: 600;
 }
 
 .search-link {

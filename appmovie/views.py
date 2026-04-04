@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 import random
 from django.contrib.auth.decorators import login_required
-from .models import EmailOTP
+from .models import EmailOTP, LikedItem, Profile
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
 from django.conf import settings
@@ -142,6 +142,12 @@ def search_multi(request):
 def frontpage(request):
     return render(request,'frontpage.html')
 
+avatars = [
+    "appmovie/avatar1.png",
+    "appmovie/avatar2.png",
+    "appmovie/avatar3.png"
+]
+
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -161,30 +167,48 @@ def register(request):
                 user=user,
                 otphash=hashed_otp
             )
-            subject = "Verify Your Account"
+            Profile.objects.create(
+                user=user,
+                avatar=random.choice(avatars)
+            )
+
+            subject = "Your RCFlix Verification Code"
 
             html_content = f"""
-            <div style="font-family: Arial, sans-serif; padding: 20px;">
-                <h2 style="color: #d63384;">Hello dear RCFLix User: {user}</h2>
-
-                <p style="font-weight:bold;">Here’s your OTP:</p>
-
-                <h1 style="color: #ff1493; letter-spacing: 3px;">
-                    {raw_otp}
-                </h1>
-
-                <p style="font-weight:bold;">
-                    Please note that this OTP is valid for 5 minutes and can only be used 5 times. If you did not request this, please ignore this email.
-                </p>
-
-                <br>
-                <p>
-                    Thanks,<br>
-                    <strong>RCFlix Admin Team</strong>
-                </p>
+            <div style="background-color:#141414; padding:40px; font-family:Arial, sans-serif; color:#ffffff;">
+                
+                <div style="max-width:600px; margin:auto; background-color:#000000; padding:30px; border-radius:8px;">
+                    
+                    <h1 style="color:#e50914; margin-bottom:20px;">RCFLIX</h1>
+                    
+                    <p style="font-size:18px; margin-bottom:20px;">
+                        Hi {user},
+                    </p>
+                    
+                    <p style="font-size:16px; margin-bottom:30px;">
+                        Use the verification code below to continue signing in.
+                    </p>
+                    
+                    <div style="text-align:center; margin:30px 0;">
+                        <span style="display:inline-block; font-size:32px; letter-spacing:8px; font-weight:bold; background:#141414; padding:15px 25px; border-radius:6px;">
+                            {raw_otp}
+                        </span>
+                    </div>
+                    
+                    <p style="font-size:14px; color:#b3b3b3; margin-bottom:20px;">
+                        This code will expire in 5 minutes. Do not share this code with anyone.
+                    </p>
+                    
+                    <hr style="border:0; border-top:1px solid #333; margin:30px 0;">
+                    
+                    <p style="font-size:12px; color:#808080;">
+                        If you didn’t request this, you can safely ignore this email.
+                    </p>
+                    <p> Thanks,<br> <strong>RCFlix Admin Team</strong> </p>
+                </div>
+                
             </div>
             """
-
             text_content = strip_tags(html_content)
 
             email = EmailMultiAlternatives(
@@ -197,7 +221,7 @@ def register(request):
                 email.attach_alternative(html_content, "text/html")
                 email.send()
             except Exception as e:
-                print("Email error:", str(e))
+                raise e
 
             # Send email
             # send_mail(
@@ -251,3 +275,25 @@ def verify_otp(request):
 
 def root_redirect(request):
     return redirect('/accounts/login/')
+
+@login_required
+def like_movie(request):
+    if request.method == "POST":
+        movie_name = request.POST.get("movie_name")
+        image = request.POST.get("image")
+
+        LikedItem.objects.create(
+            user=request.user,   
+            movie_name=movie_name,
+            image=image
+        )
+
+    return redirect("mylist")
+
+@login_required
+def user_likes(request):
+    likes = LikedItem.objects.filter(user=request.user)
+    print(request.user, request.user.id)
+    print(LikedItem.objects.all().values())
+    print(likes)
+    return render(request, "mylist.html", {"likes": likes})
