@@ -34,6 +34,14 @@
 </div>
 </div>
 
+<form method="POST" action="{% url 'list' %}">
+    {% csrf_token %}
+    <input type="hidden" name="movie_name" value="{{ info.name }}">
+    <input type="hidden" name="image" value="https://image.tmdb.org/t/p/w500{{ info.poster_path }}">
+    <input type="hidden" name="movie_id" value="{{ info.id }}">
+    <button type="submit">❤️</button>
+</form>
+
 <br/>
 <h2 style="color: red;">Cast and Crew Members</h2>
 <div style="position: relative; width: 100%; display: flex; align-items: center; margin-top: 30px; margin-bottom: 50px;">

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 import requests
 from appmovie.services.tmdbservices import fetchfromDB
 from datetime import datetime
@@ -292,8 +292,22 @@ def like_movie(request):
 
 @login_required
 def user_likes(request):
+    if request.method == "POST":
+        movie_name = request.POST.get("movie_name")
+        image = request.POST.get("image")
+        movie_id= int(request.POST.get("movie_id"))
+    #LikedItem.objects.filter(user__isnull=True).update(user=request.user)
+    
+        if not LikedItem.objects.filter(user=request.user, movie_name=movie_name, image=image, movie_id=movie_id).exists():
+            LikedItem.objects.create(user=request.user, movie_name=movie_name, image=image, movie_id=movie_id)
+        print(f"user name: {request.user}, user id: {request.user.id}")
+        print(LikedItem.objects.all().values())
     likes = LikedItem.objects.filter(user=request.user)
-    print(request.user, request.user.id)
-    print(LikedItem.objects.all().values())
-    print(likes)
     return render(request, "mylist.html", {"likes": likes})
+
+@login_required
+def remove_like(request, movie_id):
+    # Get the movie like for the current user
+    like = get_object_or_404(LikedItem, user=request.user, movie_id=movie_id)
+    like.delete()
+    return redirect('list')

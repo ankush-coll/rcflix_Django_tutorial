@@ -39,8 +39,9 @@
 <form method="POST" action="{% url 'list' %}">
     {% csrf_token %}
     <input type="hidden" name="movie_name" value="{{ info.title }}">
-    <input type="hidden" name="image" value="https://image.tmdb.org/t/p/w300{{ info.poster_path }}">
-    <button type="submit">Like</button>
+    <input type="hidden" name="image" value="https://image.tmdb.org/t/p/w500{{ info.poster_path }}">
+    <input type="hidden" name="movie_id" value="{{ info.id }}">
+    <span>Add to favourites <button type="submit" class="heart-btn">❤️</button></span>
 </form>
 
 <br/>
@@ -125,7 +126,6 @@ function scrollLeftFn() {
     }
 }
 
-</script>
 </script>
 
 

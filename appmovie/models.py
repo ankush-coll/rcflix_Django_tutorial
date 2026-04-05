@@ -15,6 +15,7 @@ class Profile(models.Model):
 
 class LikedItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie_id = models.IntegerField(null=True)
     movie_name = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
 

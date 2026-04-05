@@ -21,6 +21,13 @@
       {{ person.biography }}
     </p>
     
+    <form method="POST" action="{% url 'list' %}">
+    {% csrf_token %}
+    <input type="hidden" name="movie_name" value="{{ person.name }}">
+    <input type="hidden" name="image" value="https://image.tmdb.org/t/p/w500{{ person.profile_path }}">
+    <input type="hidden" name="movie_id" value="{{ person.id }}">
+    <button type="submit">❤️</button>
+</form>
 
     <div class="cards-container">
     {% for img in images %}

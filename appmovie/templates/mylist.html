@@ -2,12 +2,40 @@
 {% load static %}
 
 {% block content %}
-<h2 style="display: flex; justify-content: center; align-items: center; margin-top: 100px;">Watchlist of {{user}}</h2>
-{% for like in likes %}
-    <div>
-        <img src="{% static like.image %}" width="100">
-        <p>{{ like.movie_name }}</p>
-    </div>
-{% endfor %}
+<h2 style="display: flex; justify-content: center; align-items: center; margin-top: 100px; margin-bottom: 30px;">Favourites of {{user}}</h2>
+<div class="grid-container">
+    {% for like in likes %}
+        {% if like.image and like.movie_id != None %}
+            <div class="grid-item">
+                <a href="{% url 'movie_details' like.movie_id %}">
+                    <img src="{{ like.image }}" width="70%">
+                </a>
+                <p>{{ like.movie_name }}</p>
+                <!-- Delete button -->
+                <form method="POST" action="{% url 'remove_like' like.movie_id %}">
+                    {% csrf_token %}
+                    <button type="submit" style="background: transparent;">❌</button>
+                </form>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 10px; /* spacing between items */
+  justify-items: center; /* center items horizontally */
+  margin-bottom: 30px;
+}
+
+.grid-item {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 5px;
+  width: 70%;
+  margin-bottom: 30px;
+}
+</style>
 {% endblock %}

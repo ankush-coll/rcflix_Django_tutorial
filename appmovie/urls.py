@@ -1,5 +1,5 @@
 from django.urls import path
-from appmovie.views import frontpage,user_likes,register,verify_otp, movies_trending,search_multi, person_info, movie_details, series,series_details
+from appmovie.views import frontpage,user_likes,remove_like,register,verify_otp, movies_trending,search_multi, person_info, movie_details, series,series_details
 urlpatterns=[
     path('',frontpage,name='frontpage'),
     path('home/',movies_trending,name='home'),
@@ -11,4 +11,5 @@ urlpatterns=[
     path("register/", register, name="register"),
     path("verify-otp/", verify_otp, name="verify-otp"),
     path("list/", user_likes, name="list"),
+     path('list/remove/<int:movie_id>/', remove_like, name='remove_like'),
 ]
