@@ -79,7 +79,7 @@
       {% if items.poster_path %}
       <div class="movie-card">
       <div style="min-width:165px; text-align:center;">
-        <a href="{% url 'movie_details' items.id %}">
+        <a href="{% url 'series_details' items.id %}">
           <img src="https://image.tmdb.org/t/p/w500{{ items.poster_path }}"
                style="width:165px; border-radius:8px;">
         </a>

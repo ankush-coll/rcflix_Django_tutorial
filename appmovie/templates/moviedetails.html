@@ -18,22 +18,28 @@
 
   <button class="nav-btn right" onclick="nextVideo()">❯</button>
 </div>
-<div style="display: flex; justify-items: center; align-items: center;">
-<div class="movie-details" style="margin-left: 30px;">
-  <h1>{{ info.title }}</h1>
-  <p>{{ info.overview }}</p>
-    <p><strong>Runtime: </strong>{{ info.runtime }} mins </p>
-  <p><strong>Release Date:</strong> {{ info.release_date }}</p>
-  <p><strong>Rating:</strong> {{ info.vote_average|floatformat:1 }}</p>
-  {% if info.adult %}
-            <span style="color: red; font-weight: bold;">18+</span>
-        {% else %}
-        <span style="color: rgb(23, 188, 23); font-weight: bold;">UA</span>
-        {% endif %}
-</div>
-<div style="margin-right: 30px; margin-top: 10px;">
-  <img src="https://image.tmdb.org/t/p/w300{{info.poster_path}}">
-</div>
+<div style="display: flex; align-items: flex-start; gap: 40px; margin-left: 20px;">
+
+  <!-- LEFT (40%) -->
+  <div class="movie-details" style="flex: 0 0 60%;">
+    <h1>{{ info.title }}</h1>
+    <p>{{ info.overview }}</p>
+    <p><strong>Runtime:</strong> {{ info.runtime }} mins</p>
+    <p><strong>Release Date:</strong> {{ info.release_date }}</p>
+    <p><strong>Rating:</strong> {{ info.vote_average|floatformat:1 }}</p>
+
+    {% if info.adult %}
+      <span style="color: red; font-weight: bold;">18+</span>
+    {% else %}
+      <span style="color: rgb(23, 188, 23); font-weight: bold;">UA</span>
+    {% endif %}
+  </div>
+
+  <!-- RIGHT (60%) -->
+  <div style="flex: 0 0 40%; display: flex; justify-content: center;">
+    <img src="https://image.tmdb.org/t/p/w300{{ info.poster_path }}" style="max-width: 100%;">
+  </div>
+
 </div>
 
 <form method="POST" action="{% url 'list' %}">
@@ -41,7 +47,7 @@
     <input type="hidden" name="movie_name" value="{{ info.title }}">
     <input type="hidden" name="image" value="https://image.tmdb.org/t/p/w500{{ info.poster_path }}">
     <input type="hidden" name="movie_id" value="{{ info.id }}">
-    <span>Add to favourites <button type="submit" class="heart-btn">❤️</button></span>
+    <span>Add to favourites <button type="submit" class="heart-btn" style="display: flex; align-items: center; justify-content: center;">❤️</button></span>
 </form>
 
 <br/>

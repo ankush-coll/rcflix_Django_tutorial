@@ -39,3 +39,15 @@
 
 .left { left: 10px; }
 .right { right: 10px; }
+
+.heart-btn {
+    font-size: 40px;       /* Makes the heart bigger */
+    background: none;      /* Removes background */
+    border: none;          /* Removes border */
+    cursor: pointer;       /* Makes it clickable like a button */
+    padding: 0;            /* Removes default padding */
+    outline: none;
+    justify-content: center;
+    display: flex;
+    align-items: center;         /* Removes focus outline */
+}
